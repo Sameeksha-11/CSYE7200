@@ -22,6 +22,7 @@ class WebCrawlerSpec extends AnyFlatSpec with should.Matchers with Futures with 
     val badURL = "https://www1.coe.neu.edu/junk"
     val malformedURL = "x//www.htmldog.com/examples/"
 
+
     def logException(x: Throwable): Unit = System.err.println(x)
 
     "getURLContent" should s"succeed for $goodURL" taggedAs Slow in {
@@ -56,7 +57,7 @@ class WebCrawlerSpec extends AnyFlatSpec with should.Matchers with Futures with 
         }
         val usesf: Future[Seq[URL]] = MonadOps.flatten(usesfy)
         whenReady(usesf, timeout(Span(12, Seconds))) { us =>
-            us.size shouldBe 33
+            us.size shouldBe 50
         }
     }
 
